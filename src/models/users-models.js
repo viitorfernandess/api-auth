@@ -8,5 +8,16 @@ module.exports = {
 
     getUserById: (id) => users.find(user => user.id === id),
 
-    getUserByEmail: (email) => users.find(user => user.email === email)
+    getUserByEmail: (email) => users.find(user => user.email === email),
+
+    createUser: (name, email, password) => {
+        const newUser = {
+            id: uuid(),
+            name,
+            email,
+            password
+        }
+        users.push(newUser)
+        return newUser
+    }
 }
