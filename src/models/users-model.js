@@ -1,3 +1,5 @@
+const uuid =  require('uuid').v4
+
 const users = [
     { id: '1', name: 'Vitor', email: 'vitor@email.com', password: '1234' },
     { id: '2', name: 'Marcos', email: 'marcos@email.com', password: '0000' }

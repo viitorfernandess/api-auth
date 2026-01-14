@@ -16,7 +16,7 @@ module.exports = {
 
         const newUser = usersModel.createUser(name, email, password)
         res.status(201).json(newUser)
-    }
+    },
 
 
     //POST /auth/login
