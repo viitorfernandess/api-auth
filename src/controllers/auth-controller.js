@@ -1,4 +1,5 @@
 const usersModel = require("../models/users-model")
+const jwt = require('jsonwebtoken')
 
 module.exports = {
     // POST /auth/register
@@ -20,4 +21,25 @@ module.exports = {
 
 
     //POST /auth/login
+    login: (req, res) => {
+        const { email, password } = req.body
+
+        if (typeof email !== 'string' || typeof password !== 'string') {
+            return res.status(400).json({ message: 'Todos os campos são obrigatórios' })
+        }
+
+        const user = usersModel.getUserByEmail(email)
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado!' })
+        }
+
+        const isValidPassword = user.password === password
+        if (!isValidPassword) {
+            return res.status(401).json({ message: 'Senha incorreta' })
+        }
+
+        const payload = { id: user.id, email: user.email }
+        const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: '1d' })
+        res.json({ token })
+    }
 }
