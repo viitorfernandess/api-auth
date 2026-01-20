@@ -1,5 +1,6 @@
 const usersModel = require("../models/users-model")
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 module.exports = {
     // POST /auth/register
@@ -33,7 +34,7 @@ module.exports = {
             return res.status(404).json({ message: 'Usuário não encontrado!' })
         }
 
-        const isValidPassword = user.password === password
+        const isValidPassword = bcrypt.compareSync(password, user.password)
         if (!isValidPassword) {
             return res.status(401).json({ message: 'Senha incorreta' })
         }
