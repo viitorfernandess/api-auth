@@ -17,7 +17,7 @@ module.exports = {
         }
 
         const newUser = usersModel.createUser(name, email, password)
-        res.status(201).json(newUser)
+        res.status(201).json({ ...newUser, password: undefined })
     },
 
 
