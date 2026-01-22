@@ -1,6 +1,6 @@
 const uuid = require('uuid').v4
 
-const books = [ 
+const books = [
     { id: '1', title: 'Book One', author: 'Author One', quantityAvailable: 4 },
     { id: '2', title: 'Book Two', author: 'Author Two', quantityAvailable: 3 }
 ]
@@ -11,5 +11,15 @@ module.exports = {
 
     getBookById: (id) => books.find(book => book.id === id),
 
+    createBook: (title, author, quantityAvailable) => {
+        const newBook = {
+            id: uuid(),
+            title,
+            author,
+            quantityAvailable
+        }
+        books.push(newBook)
+        return newBook
+    },
     
 }
