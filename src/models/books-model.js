@@ -21,5 +21,11 @@ module.exports = {
         books.push(newBook)
         return newBook
     },
-    
+
+    uptadeBook: (id, updatedBook) => {
+        const bookIndex = books.findIndex(book => book.id === id)
+        if (bookIndex === -1) throw new Error('Livro não encontrado')
+        books[bookIndex] = { ...books[bookIndex], ...updatedBook }
+        return books[bookIndex]
+    },
 }
