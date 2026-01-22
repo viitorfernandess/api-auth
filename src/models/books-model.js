@@ -8,4 +8,8 @@ const books = [
 
 module.exports = {
     getAllBooks: () => books,
+
+    getBookById: (id) => books.find(book => book.id === id),
+
+    
 }
