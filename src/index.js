@@ -1,11 +1,11 @@
 require('dotenv').config()
 const express = require('express')
-const router = require('../routes')
+const authRouter = require('./routes/auth')
 const app = express()
 
 app.use(express.json())
 
-app.use(router)
+app.use('/auth', authRouter)
 
 
 const PORT = process.env.PORT || 3000
