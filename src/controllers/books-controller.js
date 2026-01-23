@@ -6,4 +6,11 @@ module.exports = {
         const books = booksModel.getAllBooks()
         res.json(books)
     },
+
+    // GET /api/books/:id
+    show: (req, res) => {
+        const { id } = req.params
+        const book = booksModel.getBookById(id)
+        if (!book) return res.status(404).json({ message: 'Livro não encontrado!' })
+    }
 }
