@@ -6,5 +6,6 @@ apiRouter.get('/books', booksController.index)
 apiRouter.get('/books/:id', booksController.show)
 
 apiRouter.post('/books', booksController.save)
+apiRouter.put('/books/:id', booksController.update)
 
 module.exports = apiRouter

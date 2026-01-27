@@ -17,13 +17,27 @@ module.exports = {
 
     //POST /api/books
     save: (req, res) => {
-        const { title, author, quantityAvaible } = req.body
+        const { title, author, quantityAvailable } = req.body
 
-        if(typeof title !== 'string' || typeof author !== 'string' || typeof quantityAvaible !== 'number')  {
+        if(typeof title !== 'string' || typeof author !== 'string' || typeof quantityAvailable !== 'number')  {
             return res.status(400).json({ message: 'Campos inválidos.' })
         }
 
         const newBook = booksModel.createBook(title, author, quantityAvaible)
         res.status(201).json(newBook)
+    },
+
+    // PUT /api/books/:id
+    update: (req, res) => {
+        const { id } = req.params
+        const { title, author, quantityAvailable } = req.body
+        const fieldsToUpdate = {}
+
+        if (title) fieldsToUpdate.title = title
+        if (author) fieldsToUpdate.author = author
+        if (quantityAvailable) fieldsToUpdate.quantityAvailable = quantityAvailable
+
+        const updatedBook = booksModel.uptadeBook(id, fieldsToUpdate)
+        return res.status(200).json(updatedBook)
     }
 }
