@@ -1,6 +1,6 @@
 const uuid = require('uuid').v4
 
-const books = [
+let books = [
     { id: '1', title: 'Book One', author: 'Author One', quantityAvailable: 4 },
     { id: '2', title: 'Book Two', author: 'Author Two', quantityAvailable: 3 }
 ]

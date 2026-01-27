@@ -12,5 +12,18 @@ module.exports = {
         const { id } = req.params
         const book = booksModel.getBookById(id)
         if (!book) return res.status(404).json({ message: 'Livro não encontrado!' })
+            res.json(book)
+    },  
+
+    //POST /api/books
+    save: (req, res) => {
+        const { title, author, quantityAvaible } = req.body
+
+        if(typeof title !== 'string' || typeof author !== 'string' || typeof quantityAvaible !== 'number')  {
+            return res.status(400).json({ message: 'Campos inválidos.' })
+        }
+
+        const newBook = booksModel.createBook(title, author, quantityAvaible)
+        res.status(201).json(newBook)
     }
 }
