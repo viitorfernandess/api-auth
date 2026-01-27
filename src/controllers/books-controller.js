@@ -39,5 +39,12 @@ module.exports = {
 
         const updatedBook = booksModel.uptadeBook(id, fieldsToUpdate)
         return res.status(200).json(updatedBook)
+    },
+
+    // DELETE //api/books/:id
+    delete: (req, res) => {
+        const { id } = req.params
+        
     }
+
 }

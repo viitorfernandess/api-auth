@@ -28,4 +28,12 @@ module.exports = {
         books[bookIndex] = { ...books[bookIndex], ...updatedBook }
         return books[bookIndex]
     },
+
+    deleteBook: (id) => {
+        const bookIndex = books.findIndex(book => book.id === id)
+        if (bookIndex === -1) throw new Error('Livro não encontrado')
+        const deletedBook = books[bookIndex]
+        books = books.filter(book => book.id !== id)
+        return deletedBook
+    }
 }
