@@ -44,7 +44,8 @@ module.exports = {
     // DELETE //api/books/:id
     delete: (req, res) => {
         const { id } = req.params
-        
+        const deletedBook = booksModel.deleteBook(id)
+        res.status(200).json(deletedBook)
     }
 
 }
