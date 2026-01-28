@@ -1,3 +1,5 @@
+const HttpError = require('../errors/HttpError')
+
 const uuid = require('uuid').v4
 
 let books = [
@@ -24,14 +26,14 @@ module.exports = {
 
     uptadeBook: (id, updatedBook) => {
         const bookIndex = books.findIndex(book => book.id === id)
-        if (bookIndex === -1) throw new Error('Livro não encontrado')
+        if (bookIndex === -1) throw new HttpError(404, 'Livro não encontrado no sistema')
         books[bookIndex] = { ...books[bookIndex], ...updatedBook }
         return books[bookIndex]
     },
 
     deleteBook: (id) => {
         const bookIndex = books.findIndex(book => book.id === id)
-        if (bookIndex === -1) throw new Error('Livro não encontrado')
+        if (bookIndex === -1) throw new HttpError(404, 'Livro não encontrado no sistema')
         const deletedBook = books[bookIndex]
         books = books.filter(book => book.id !== id)
         return deletedBook
