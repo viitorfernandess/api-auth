@@ -15,5 +15,7 @@ const loans = [
 module.exports = {
     getAllLoans: () => loans,
 
+    getLoanById: (id) => loans.find(loan => loan.id === id),
+
     
 }
