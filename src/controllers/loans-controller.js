@@ -14,5 +14,7 @@ module.exports = {
         const loan = loansModel.getLoanById(id)
         if (!loan) throw new HttpError(404, 'Empréstimo não encontrado')
         res.json(loan)
-    }
+    },
+
+    
 }
