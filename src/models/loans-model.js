@@ -37,12 +37,26 @@ module.exports = {
         }
 
         loans.push(newLoan)
-        booksModel.updateBook(book.id, {quantityAvailable: book.quantityAvailable - 1})
+        booksModel.updateBook(book.id, { quantityAvailable: book.quantityAvailable - 1 })
 
         return newLoan
     },
 
     returnLoan: (id) => {
-        
+        const loanIndex = loans.findIndex(loan => loan.id === id)
+        if (loanIndex === -1) throw new HttpError(404, 'Empréstimo não encontrado!')
+
+        const loan = loans[loanIndex]
+        if (loan.isReturned) throw new HttpError(400, 'Livro já foi devolvido')
+
+        loan.isReturned = true
+
+        const today = new Date()
+        const limitDate = new Date(loan.returnDate)
+        loan.isLate = today > limitDate
+        loan.returnDate = today
+
+        booksModel.returnBook(loan.bookId)
+        return loan
     }
 }
