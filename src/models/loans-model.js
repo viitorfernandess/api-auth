@@ -41,4 +41,8 @@ module.exports = {
 
         return newLoan
     },
+
+    returnLoan: (id) => {
+        
+    }
 }
