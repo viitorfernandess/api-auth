@@ -1,5 +1,5 @@
-const HttpError = require('../errors/HttpError')
-
+const HttpError = require("../errors/HttpError")
+const booksModel = require("../models/books-model")
 const uuid = require('uuid').v4
 
 const loans = [

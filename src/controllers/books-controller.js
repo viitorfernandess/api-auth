@@ -37,7 +37,7 @@ module.exports = {
         if (author) fieldsToUpdate.author = author
         if (quantityAvailable) fieldsToUpdate.quantityAvailable = quantityAvailable
 
-        const updatedBook = booksModel.uptadeBook(id, fieldsToUpdate)
+        const updatedBook = booksModel.updateBook(id, fieldsToUpdate)
         return res.status(200).json(updatedBook)
     },
 

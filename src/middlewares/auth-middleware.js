@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const userModel =  require('../models/users-model')
 
 module.exports = {
     ensureAuth: (req, res, next)  => {

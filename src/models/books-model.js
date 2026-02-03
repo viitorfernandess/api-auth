@@ -24,7 +24,7 @@ module.exports = {
         return newBook
     },
 
-    uptadeBook: (id, updatedBook) => {
+    updateBook: (id, updatedBook) => {
         const bookIndex = books.findIndex(book => book.id === id)
         if (bookIndex === -1) throw new HttpError(404, 'Livro não encontrado no sistema')
         books[bookIndex] = { ...books[bookIndex], ...updatedBook }
